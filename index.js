@@ -1,6 +1,9 @@
 // Importeer express uit de node_modules map
 import express from 'express'
 
+const url = 'https://whois.fdnd.nl/api/v1/member/amir-amerian'
+const data = await fetch(url).then((response) => response.json())
+
 // Maak een nieuwe express app aan
 const app = express()
 
@@ -14,11 +17,11 @@ app.use(express.static('public'))
 // Maak een route voor de index
 app.get('/', function (req, res) {
   // res.send('Hello World!')
-  res.render('index')
+  res.render('index', data)
 })
 
 // Stel het poortnummer in waar express op gaat luisteren
-app.set('port', process.env.PORT || 8000)
+app.set('port', process.env.PORT || 8023)
 
 // Start express op, haal het ingestelde poortnummer op
 app.listen(app.get('port'), function () {
